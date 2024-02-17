@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:pizzahut_app/searchbutton.dart';
+import 'package:pizzahut_app/textfield.dart';
 
 class choosingpage extends StatefulWidget {
   
@@ -28,7 +30,7 @@ class _choosingpageState extends State<choosingpage> {
                },
                child: SingleChildScrollView(
                  child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                  
@@ -36,20 +38,13 @@ class _choosingpageState extends State<choosingpage> {
                  
                     children: [
                       Container(
-                       height: containerHeight*0.7,
+                       height: containerHeight*0.45,
                       ),
                      Container(
                       height: containerHeight/4,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                       gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors:[
-                         const Color.fromARGB(255, 141, 21, 13),
-                         const Color.fromARGB(255, 141, 21, 13)
-                        ]
-                        )
+                       color: const Color.fromARGB(255, 182, 39, 29)
                       ),
                      ),
                      Positioned(
@@ -78,14 +73,105 @@ class _choosingpageState extends State<choosingpage> {
                         )]
                  
                       ),
-                   
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: containerHeight/8,
+                              child: Padding(
+                                padding:  EdgeInsets.only(top: containerHeight/19,left: 20,right: 20),
+                                child: Center(
+                                  child: TabBarView(
+                                    children: [
+                                     textfield1(txt: 'Enter your delivery Location',),
+                                     textfield1(txt: 'Enter your takeaway location',)
+                                    ]
+                                    
+                                    ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:  EdgeInsets.only(
+                                top: containerHeight/50,
+                                bottom: containerHeight/40,
+                                left: 20,
+                                right: 20
+                              ),
+                              child: searchbutton(),
+                            )
+                          ],
+                        ),  
                        
                       )
                       
-                      )
+                      ),
+                      Positioned(
+                        left: 20,
+                        right: 20,
+                        top: containerHeight/7,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 179, 179, 179),
+
+                            borderRadius: BorderRadius.circular(13)
+                          ),
+                          height: containerHeight/20,
+                          child: TabBar(
+                            tabs: [
+                              Text("Delivery",style: TextStyle(color: Colors.black,fontSize: fontSize/20),),
+                              Text("Takeaway",style: TextStyle(color: Colors.black,fontSize: fontSize/20),)
+                            ],
+                             indicatorSize: TabBarIndicatorSize.tab, // Set indicator size to tab
+                            indicator: BoxDecoration(
+                              
+                              color: const Color.fromARGB(255, 255, 255, 255),
+
+                              
+                            ),
+                           
+                            ),
+                        )
+                        
+                        
+                        )
                  
+                    ]
+                 
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                        
+           Center(
+             child: Container(
+                   width: MediaQuery.of(context).size.width/5,
+                   child: Divider(
+                     color: Colors.black,
+                     height: containerHeight/25,
+                     thickness: containerHeight/300,
+                     indent: 3,
+                     endIndent: 2,
+                   ),
+             ),
+           ),
+                         Container(
+                          
+                          child: Center(child: Text("Our Most Popular Deals",style: TextStyle(color: Colors.black,fontWeight:FontWeight.w500,fontSize:fontSize/20),),),),
+                           Center(
+                             child: Container(
+                                   width: MediaQuery.of(context).size.width/5,
+                                   child: Divider(
+                                     color: Colors.black,
+                                     height: containerHeight/25,
+                                     thickness: containerHeight/300,
+                                     indent: 3,
+                                     endIndent: 2,
+                                   ),
+                             ),
+                           )
                     ],
-                 
                   )
                  
                  
