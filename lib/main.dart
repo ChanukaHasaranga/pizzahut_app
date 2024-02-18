@@ -29,7 +29,7 @@ class Myapp extends StatelessWidget {
       
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.light),
-    title: "PizzaHut",
+    title: "pizzaHut",
     home:loadingpage() ,
 
     );
