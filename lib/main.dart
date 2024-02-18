@@ -25,11 +25,11 @@ class Myapp extends StatelessWidget {
        //device preview ekata dmma code
         useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
+      builder: DevicePreview.appBuilder,  
       
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.light),
-    title: "pizzaHut",
+    title: "PizzaHut",
     home:loadingpage() ,
 
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pizzahut_app/dividertext.dart';
 import 'package:pizzahut_app/items.dart';
+import 'package:pizzahut_app/list.dart';
 
 class menu extends StatefulWidget {
   const menu({super.key});
@@ -17,6 +18,7 @@ class _menuState extends State<menu> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
 appBar: AppBar(
+  
     automaticallyImplyLeading: false,
 
   backgroundColor: Colors.white,
@@ -41,121 +43,133 @@ actions:<Widget>
 
 ],
 ),
+
+
 body: SafeArea(
   
-  child: SingleChildScrollView(
-  child: Container(
-    decoration: BoxDecoration(
-      image: DecorationImage(image: AssetImage("assets/wallpaper.jpg"),fit: BoxFit.cover)
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-       children: [
-          
-          Padding(
-            padding:  EdgeInsets.only(right: fontSize/6,left: fontSize/6,top: containerHeight/60,bottom: containerHeight/60),
-            child: ElevatedButton(onPressed:() {
-              
-            },
-            
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(0, 255, 255, 255),
-              foregroundColor:Colors.transparent,
-              shape: BeveledRectangleBorder(),
-              side: BorderSide(color: Color.fromARGB(255, 164, 164, 164)),
-            ),
-            
-             child:Padding(
-               padding:  EdgeInsets.only(top: containerHeight/70,bottom: containerHeight/70),
-               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(Icons.bike_scooter,color: Colors.black,size: fontSize/25,),
-                  Text("CHANGE DELIVERY DETAILS",style: TextStyle(color:const Color.fromARGB(255, 0, 0, 0),fontSize: fontSize/30),)
-                           
-                ],
-               ),
-             ) ),
-          ),
-
-          dividertext(txt: "LITE"),
-
-          Container(
-            height: containerHeight/2,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 3,
-                itemBuilder:(context, index) {
-                return items();
-
-
-              },),
-          ),
-          SizedBox(height: containerHeight/40,),
-            dividertext(txt: "CLASSIC"),
-
-          Container(
-            height: containerHeight/2,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 3,
-                itemBuilder:(context, index) {
-                return items();
-
-
-              },),
-          ),
-          SizedBox(height: containerHeight/40,),
-            dividertext(txt: "SIGNATURE"),
-
-          Container(
-            height: containerHeight/2,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 2,
-                itemBuilder:(context, index) {
-                return items();
-
-
-              },),
-          ),
-          SizedBox(height: containerHeight/40,),
-            dividertext(txt: "FAVOURITE"),
-
-          Container(
-            height: containerHeight/2,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 2,
-                itemBuilder:(context, index) {
-                return items();
-
-
-              },),
-          ),
-          SizedBox(height: containerHeight/40,),
-            dividertext(txt: "SUPREME"),
-
-          Container(
-            height: containerHeight/2,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 2,
-                itemBuilder:(context, index) {
-                return items();
-
-
-              },),
-          )
-
-      
+  child: DefaultTabController(
     
-       ],
+    length: 4,
+    child: SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+    child: Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(image: AssetImage("assets/wallpaper.jpg"),fit: BoxFit.cover)
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+         children: [
+
+          Container(
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 42, 42, 42),
+
+                            borderRadius: BorderRadius.circular(0)
+                          ),
+                          height: containerHeight/18,
+                          child: TabBar(
+                            tabs: [
+                              
+                              Text("PRAMOS",style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255),fontSize: fontSize/30),),
+                              Text("PIZZA",style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255),fontSize: fontSize/30),),
+                              Text("MELTS",style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255),fontSize: fontSize/30),),
+                              Text("APPETIZERS & OTHERS",style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255),fontSize: fontSize/35),)
+
+
+                            ],
+                             indicatorSize: TabBarIndicatorSize.tab, // Set indicator size to tab
+                            indicator: BoxDecoration(
+                              
+                              color: Color.fromARGB(255, 157, 5, 5),
+
+                              
+                            ),
+                           
+                            ),
+                        ),
+            
+            Padding(
+              padding:  EdgeInsets.only(right: fontSize/6,left: fontSize/6,top: containerHeight/60,bottom: containerHeight/60),
+              child: ElevatedButton(onPressed:() {
+                
+              },
+              
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+                foregroundColor:Colors.transparent,
+                shape: BeveledRectangleBorder(),
+                side: BorderSide(color: Color.fromARGB(255, 164, 164, 164)),
+              ),
+              
+               child:Padding(
+                 padding:  EdgeInsets.only(top: containerHeight/70,bottom: containerHeight/70),
+                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(Icons.bike_scooter,color: Colors.black,size: fontSize/25,),
+                    Text("CHANGE DELIVERY DETAILS",style: TextStyle(color:const Color.fromARGB(255, 0, 0, 0),fontSize: fontSize/30),)
+                             
+                  ],
+                 ),
+               ) ),
+            ),
+
+            Container(
+              height: containerHeight*2,
+              child: TabBarView(children: [
+                dividertext(txt: "LITE"),
+
+                 SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                   child: Column(
+                    children: [
+                                 
+                      dividertext(txt: "LITE"),
+                    
+                       listitem(),
+                                 SizedBox(height: containerHeight/40,),
+                                   dividertext(txt: "CLASSIC"),
+                    
+                           listitem(),
+                                 SizedBox(height: containerHeight/40,),
+                                   dividertext(txt: "SIGNATURE"),
+                    
+                          listitem(),
+                                 SizedBox(height: containerHeight/40,),
+                                   dividertext(txt: "FAVOURITE"),
+                    listitem(),
+                                 SizedBox(height: containerHeight/40,),
+                                   dividertext(txt: "SUPREME"),
+                    
+                       listitem()
+                    
+                        
+                                 
+                                 
+                    ],
+                   ),
+                 ),
+              
+                    dividertext(txt: "LITE"),
+                    dividertext(txt: "LITE"),
+              
+              
+              
+              
+              ]
+              ),
+            ),
+
+    
+            
+      
+         ],
+      ),
     ),
-  ),
-)),
+    ),
+  )),
     );
   }
 }

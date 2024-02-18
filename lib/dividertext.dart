@@ -29,18 +29,16 @@ class dividertext extends StatelessWidget {
            ),
                          Container(
                           
-                          child: Center(child: Text(txt,style: TextStyle(color: Colors.black,fontWeight:FontWeight.w500,fontSize:fontSize/20),),),),
-                           Center(
-                             child: Container(
-                                   width: MediaQuery.of(context).size.width/5,
-                                   child: Divider(
-                                     color: Colors.black,
-                                     height: containerHeight/25,
-                                     thickness: containerHeight/300,
-                                     indent: 3,
-                                     endIndent: 2,
-                                   ),
-                             ),
+                          child: Text(txt,style: TextStyle(color: Colors.black,fontWeight:FontWeight.w500,fontSize:fontSize/20),),),
+                           Container(
+                                 width: MediaQuery.of(context).size.width/5,
+                                 child: Divider(
+                                   color: Colors.black,
+                                   height: containerHeight/25,
+                                   thickness: containerHeight/300,
+                                   indent: 3,
+                                   endIndent: 2,
+                                 ),
                            )
                     ],
                   );
