@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pizzahut_app/menu.dart';
 
 class textfield1 extends StatefulWidget {
   String txt;
@@ -147,6 +148,9 @@ Column(
         SizedBox(height: containerHeight/20,),
         Center(
           child: ElevatedButton(onPressed:() {
+            Navigator.of(context).push(MaterialPageRoute(builder:(context) {
+              return menu();
+            },));
           },
           style: ElevatedButton.styleFrom(
             backgroundColor:Colors.white,
