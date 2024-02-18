@@ -11,7 +11,6 @@ runApp(
 DevicePreview(builder:(context) => Myapp(),)
 
 
-
 );
 
 
@@ -30,7 +29,7 @@ class Myapp extends StatelessWidget {
       
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.light),
-    title: "Pizzahut",
+    title: "PizzaHut",
     home:loadingpage() ,
 
     );
