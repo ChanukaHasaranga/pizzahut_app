@@ -96,7 +96,7 @@ body: SafeArea(
               },
               
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+                backgroundColor: Colors.transparent,
                 foregroundColor:Colors.transparent,
                 shape: BeveledRectangleBorder(),
                 side: BorderSide(color: Color.fromARGB(255, 164, 164, 164)),

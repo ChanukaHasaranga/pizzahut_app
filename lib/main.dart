@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pizzahut_app/loadingpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,8 +9,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async{
 
 runApp(
-DevicePreview(builder:(context) => Myapp(),)
-
+   DevicePreview(
+    enabled: !kReleaseMode,
+    builder: (context) => 
+ Myapp(),
+   )
 
 );
 
@@ -23,9 +27,9 @@ class Myapp extends StatelessWidget {
     return MaterialApp(
 
        //device preview ekata dmma code
-        useInheritedMediaQuery: true,
+    useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,  
+      builder: DevicePreview.appBuilder,
       
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.light),
