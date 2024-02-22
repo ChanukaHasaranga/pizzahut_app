@@ -11,6 +11,7 @@ class extraadding extends StatefulWidget {
   List<String>imglist;
   String txt;  
 Function(int) onTotalChanged;
+Function(List<String>) onitemlist;
    extraadding({
     
     required this.itemList,
@@ -18,6 +19,7 @@ Function(int) onTotalChanged;
     required this.imglist,
     required this.txt,
       required this.onTotalChanged,
+      required this.onitemlist,
     super.key});
 
   @override
@@ -122,8 +124,9 @@ String prices='';
   }
 });
               // Handle item selection here
-              print(widget.itemList);
+              print(item1);
               print(pricelisted);
+              widget.onitemlist(item1);
              totall=totall2+totall1;
               print(totall);
               calculation(totall);

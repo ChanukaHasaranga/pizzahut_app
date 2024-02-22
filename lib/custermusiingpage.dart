@@ -4,9 +4,12 @@ import 'package:pizzahut_app/extraitemexpanded.dart';
 import 'package:pizzahut_app/textfieldexpandable.dart';
 
 class customiseingpage extends StatefulWidget {
-
+String name;
+int price;
 
    customiseingpage({
+    required this.name,
+    required this.price,
  super.key
  
     });
@@ -23,6 +26,7 @@ class _customiseingpageState extends State<customiseingpage> {
   int count=0;
   int totallprice=0;
   String additem="Add to CartRs.";
+  List<String>extraitemsnew=[];
   @override
   Widget build(BuildContext context) {
   double containerHeight = MediaQuery.of(context).size.height;
@@ -50,8 +54,7 @@ actions:<Widget>
     
   }, icon:Icon(Icons.person_outline,color: const Color.fromARGB(255, 134, 25, 17),size: fontSize/21,),),
   IconButton(onPressed:() {
-    print("price ${totalExtraPrice}");
-    print("Size price $newsizeprice");
+    print("price ${extraitemsnew}");
     
   }, icon:Icon(Icons.menu,color: Colors.black,size: fontSize/21,))
 
@@ -93,7 +96,7 @@ body: SafeArea(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Chilli Chicken Pizza",style: TextStyle(fontWeight: FontWeight.bold,fontSize: fontSize/14,color: Colors.black),),
+                Text("${widget.name}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: fontSize/14,color: Colors.black),),
                 SizedBox(height: containerHeight/90,),
                 Text("A pizza topped with spicy chicken, Green Chillies,onions & Mozzarella",style: TextStyle(color: const Color.fromARGB(255, 77, 77, 77),fontWeight: FontWeight.w400,fontSize: fontSize/22),),
                 SizedBox(height: containerHeight/90,),
@@ -138,9 +141,10 @@ body: SafeArea(
 
                       Padding(
                   padding: EdgeInsets.all(containerHeight / 60),
-                  child: ExpandableContainer(itemList: ["Large", "Medium","Personal"], pricelist: [2840,1560,840], txt: 'Size', imglist: [ "assets/8peases.jpg", "assets/6peasesjpg.jpg","assets/4peases.png",], pizzasizeprice: (newsize ) { 
+                  child: ExpandableContainer(itemList: ["Large", "Medium","Personal"], pricelist: [widget.price+2000,widget.price+720,widget.price], txt: 'Size', imglist: [ "assets/8peases.jpg", "assets/6peasesjpg.jpg","assets/4peases.png",], pizzasizeprice: (newsize ) { 
                   setState(() {
                      newsizeprice=newsize;
+            totallprice=totalExtraPrice+newsizeprice;
 
                   });
                    },),
@@ -152,7 +156,17 @@ body: SafeArea(
             totalExtraPrice = newTotal;
             totallprice=totalExtraPrice+newsizeprice;
           });
-        },)
+        }, onitemlist: (extraitems) { 
+          setState(() {
+            extraitemsnew=extraitems;
+               
+
+               
+
+          });
+
+
+         },)
                 ), 
                   Padding(
                     

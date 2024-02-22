@@ -9,12 +9,13 @@ class items extends StatelessWidget {
   double containerHeight = MediaQuery.of(context).size.height;
   double fontSize = MediaQuery.of(context).size.width;
   int pricebig=840;
+  String name='Chilli Chicken Pizza';
     return SafeArea(child: Padding(
       padding:  EdgeInsets.only(top: containerHeight/40,left: fontSize/30,right: fontSize/30),
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(builder:(context) {
-            return customiseingpage();
+            return customiseingpage(name: name, price:pricebig ,);
           },));
 
         },
@@ -48,7 +49,7 @@ class items extends StatelessWidget {
                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                  crossAxisAlignment: CrossAxisAlignment.start,
                  children: [
-              Text("Chilli Chicken Pizza",style: TextStyle(color: Colors.black,fontSize: fontSize/26),),
+              Text("$name",style: TextStyle(color: Colors.black,fontSize: fontSize/26),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
