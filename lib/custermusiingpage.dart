@@ -7,9 +7,9 @@ class customiseingpage extends StatefulWidget {
 
 
    customiseingpage({
-    
+ super.key
  
-    super.key});
+    });
 
   @override
   State<customiseingpage> createState() => _customiseingpageState();
@@ -18,6 +18,11 @@ class customiseingpage extends StatefulWidget {
 class _customiseingpageState extends State<customiseingpage> {
   String dropdownvalue="Pan";
   String key1="Select Crust * ";
+  int totalExtraPrice=0;
+  int newsizeprice=0;
+  int count=0;
+  int totallprice=0;
+  String additem="Add to CartRs.";
   @override
   Widget build(BuildContext context) {
   double containerHeight = MediaQuery.of(context).size.height;
@@ -45,6 +50,8 @@ actions:<Widget>
     
   }, icon:Icon(Icons.person_outline,color: const Color.fromARGB(255, 134, 25, 17),size: fontSize/21,),),
   IconButton(onPressed:() {
+    print("price ${totalExtraPrice}");
+    print("Size price $newsizeprice");
     
   }, icon:Icon(Icons.menu,color: Colors.black,size: fontSize/21,))
 
@@ -120,22 +127,132 @@ body: SafeArea(
       ),
       Padding(
                   padding: EdgeInsets.all(containerHeight / 60),
-                  child: ExpandableContainer(itemList: ["Pan", "Sausage",], pricelist: [], txt: 'Crust', imglist: ["assets/panpizza.png","assets/sausage.png"],),
+                  child: ExpandableContainer(itemList: ["Pan", "Sausage",], pricelist: [], txt: 'Crust', imglist: ["assets/panpizza.png","assets/sausage.png"], pizzasizeprice: (newsize ) { 
+
+                   setState(() {
+                     newsizeprice=newsize;
+                   });
+
+                   },),
                 ),
 
                       Padding(
                   padding: EdgeInsets.all(containerHeight / 60),
-                  child: ExpandableContainer(itemList: ["Large", "Medium","Personal"], pricelist: [2840,1560,840], txt: 'Size', imglist: [ "assets/8peases.jpg", "assets/6peasesjpg.jpg","assets/4peases.png",],),
+                  child: ExpandableContainer(itemList: ["Large", "Medium","Personal"], pricelist: [2840,1560,840], txt: 'Size', imglist: [ "assets/8peases.jpg", "assets/6peasesjpg.jpg","assets/4peases.png",], pizzasizeprice: (newsize ) { 
+                  setState(() {
+                     newsizeprice=newsize;
+
+                  });
+                   },),
                 ),
                     Padding(
                   padding: EdgeInsets.all(containerHeight / 60),
-                  child: extraadding(itemList: ["BBQ Chicken", "Beef Pepperoni","Cheese","Prawns","Bell Peper","Onion"], pricelist: [190,225,190,330,75,75], txt: '', imglist: [ "assets/bbq.png", "assets/beef.png","assets/cheese.png","assets/prawns.png","assets/bellpaper.png","assets/onion.png"],)
+                  child: extraadding(itemList: ["BBQ Chicken", "Beef Pepperoni","Cheese","Prawns","Bell Peper","Onion"], pricelist: [190,225,190,330,75,75], txt: '', imglist: [ "assets/bbq.png", "assets/beef.png","assets/cheese.png","assets/prawns.png","assets/bellpaper.png","assets/onion.png"],onTotalChanged: (newTotal) {
+          setState(() {
+            totalExtraPrice = newTotal;
+            totallprice=totalExtraPrice+newsizeprice;
+          });
+        },)
                 ), 
                   Padding(
+                    
                   padding: EdgeInsets.all(containerHeight / 60),
                   child: textexpandable()
                 ),   
                
+               Padding(
+                  padding: EdgeInsets.all(containerHeight / 60),
+                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                  
+                 
+                  children: [
+                 
+                   Container(
+  height: containerHeight/20,
+  width: fontSize/4,
+  child: FloatingActionButton(
+    heroTag: 'decrementButton', // Unique hero tag for the decrement button
+    onPressed: () {
+      setState(() {
+        if (count > 0) {
+          count--;
+        } else if (count == 0) {
+          count = 0;
+        }
+      });
+    },
+    backgroundColor: Colors.white,
+    foregroundColor: Colors.black,
+    shape: Border.all(color: const Color.fromARGB(127, 0, 0, 0), width: 1),
+    child: Padding(
+      padding: EdgeInsets.only(bottom: containerHeight/10),
+      child: Center(child: Icon(Icons.minimize, size: fontSize/20)),
+    ),
+  ),
+),
+Container(
+  height: containerHeight/20,
+  decoration: BoxDecoration(
+    color: const Color.fromARGB(255, 154, 152, 152),
+    boxShadow: [BoxShadow(
+      blurRadius: 3,
+      color: Colors.black
+    )]
+  ),
+  width: fontSize/4,
+  child: Center(
+    child: Text("$count", style: TextStyle(color: Colors.black, fontSize: fontSize/20)),
+  ),
+),
+Container(
+  height: containerHeight/20,
+  width: fontSize/4,
+  child: FloatingActionButton(
+    heroTag: 'incrementButton', // Unique hero tag for the increment button
+    onPressed: () {
+      setState(() {
+        if (count >= 0) {
+          count++;
+        }
+      });
+    },
+    backgroundColor: Colors.white,
+    foregroundColor: Colors.black,
+    shape: Border.all(color: const Color.fromARGB(127, 0, 0, 0), width: 1),
+    child: Padding(
+      padding: EdgeInsets.only(bottom: containerHeight/10),
+      child: Center(child: Center(child: Icon(Icons.add, size: fontSize/20))),
+    ),
+  ),
+),
+
+                 
+                  ],
+
+                 ),
+               ),
+
+               Padding(
+                  padding: EdgeInsets.all(containerHeight / 60),
+                 child: ElevatedButton(
+                  
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.black,
+                    shape: BeveledRectangleBorder()
+                  ),
+                  
+                  onPressed:() {
+                   
+                 
+                 }, child: Center(
+                  child: Text(
+                    "$additem $totallprice",style: TextStyle(color: Colors.white,fontSize: fontSize/20,fontWeight: FontWeight.bold),
+                  ),
+                 )),
+               )
 
       ],
       

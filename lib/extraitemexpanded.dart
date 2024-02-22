@@ -9,13 +9,15 @@ class extraadding extends StatefulWidget {
   List<String>itemList;
   List<int>pricelist;
   List<String>imglist;
-  String txt;
+  String txt;  
+Function(int) onTotalChanged;
    extraadding({
     
     required this.itemList,
     required this.pricelist,
     required this.imglist,
     required this.txt,
+      required this.onTotalChanged,
     super.key});
 
   @override
@@ -161,5 +163,6 @@ String prices='';
   }
   void calculation(int totall){
     print(totall);
+    widget.onTotalChanged(totall);
   }
 }

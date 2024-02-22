@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:pizzahut_app/custermusiingpage.dart';
 
 class ExpandableContainer extends StatefulWidget {
 
@@ -7,12 +8,14 @@ class ExpandableContainer extends StatefulWidget {
   List<int>pricelist;
   List<String>imglist;
   String txt;
+  Function(int)pizzasizeprice;
    ExpandableContainer({
     
     required this.itemList,
     required this.pricelist,
     required this.imglist,
     required this.txt,
+    required this.pizzasizeprice,
     super.key});
 
   @override
@@ -26,6 +29,8 @@ class _ExpandableContainerState extends State<ExpandableContainer> {
       int selectedIndex = -1;
 
 String prices='';
+List<int>priceasizess=[];
+int realprice=0;
 
   @override
   Widget build(BuildContext context) {
@@ -84,23 +89,38 @@ String prices='';
         itemBuilder: (context, index) {
           if (widget.pricelist == null || widget.pricelist.isEmpty ) {
                prices='';
+               priceasizess=[];
             
           }else{
                prices="(Rs. ${widget.pricelist[index]})";
-
-
+               priceasizess.add(widget.pricelist[index]);
 
           }
           return GestureDetector(
             onTap: () {
 
               setState(() {
+                
+                
+        if (widget.pricelist == null || widget.pricelist.isEmpty ) {
+               realprice=0;
+            
+          }else{
+                   realprice=widget.pricelist[index];
+          }
+                
+                
+                
+                
                 item1=widget.itemList[index];
+                
                                 selectedIndex = index;
-
               });
               // Handle item selection here
               print(widget.itemList);
+                          print(realprice);
+                          widget.pizzasizeprice(realprice);
+
             },
             child: Container(
               decoration: BoxDecoration(
