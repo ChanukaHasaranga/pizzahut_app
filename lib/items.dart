@@ -8,6 +8,7 @@ class items extends StatelessWidget {
   Widget build(BuildContext context) {
   double containerHeight = MediaQuery.of(context).size.height;
   double fontSize = MediaQuery.of(context).size.width;
+  int pricebig=840;
     return SafeArea(child: Padding(
       padding:  EdgeInsets.only(top: containerHeight/40,left: fontSize/30,right: fontSize/30),
       child: GestureDetector(
@@ -15,6 +16,7 @@ class items extends StatelessWidget {
           Navigator.of(context).push(MaterialPageRoute(builder:(context) {
             return customiseingpage();
           },));
+
         },
         child: Container(
           height: containerHeight/5,
@@ -51,7 +53,7 @@ class items extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                  Text("               Strating From  ",style: TextStyle(color: Color.fromARGB(105, 0, 0, 0),fontSize: fontSize/30),),
-                 Text("Rs.840",style:TextStyle(fontWeight: FontWeight.bold,color: Colors.black,fontSize: fontSize/26),)
+                 Text("Rs.$pricebig",style:TextStyle(fontWeight: FontWeight.bold,color: Colors.black,fontSize: fontSize/26),)
                 ],
                  
               ),

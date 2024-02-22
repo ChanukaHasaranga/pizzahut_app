@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pizzahut_app/ExpandableContainer.dart';
+import 'package:pizzahut_app/extraitemexpanded.dart';
 import 'package:pizzahut_app/textfieldexpandable.dart';
 
 class customiseingpage extends StatefulWidget {
-  const customiseingpage({super.key});
+
+
+   customiseingpage({
+    
+ 
+    super.key});
 
   @override
   State<customiseingpage> createState() => _customiseingpageState();
@@ -121,10 +127,15 @@ body: SafeArea(
                   padding: EdgeInsets.all(containerHeight / 60),
                   child: ExpandableContainer(itemList: ["Large", "Medium","Personal"], pricelist: [2840,1560,840], txt: 'Size', imglist: [ "assets/8peases.jpg", "assets/6peasesjpg.jpg","assets/4peases.png",],),
                 ),
+                    Padding(
+                  padding: EdgeInsets.all(containerHeight / 60),
+                  child: extraadding(itemList: ["BBQ Chicken", "Beef Pepperoni","Cheese","Prawns","Bell Peper","Onion"], pricelist: [190,225,190,330,75,75], txt: '', imglist: [ "assets/bbq.png", "assets/beef.png","assets/cheese.png","assets/prawns.png","assets/bellpaper.png","assets/onion.png"],)
+                ), 
                   Padding(
                   padding: EdgeInsets.all(containerHeight / 60),
                   child: textexpandable()
-                ),    
+                ),   
+               
 
       ],
       
