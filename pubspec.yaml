@@ -31,6 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
   dotted_border: ^2.0.1
+  provider: ^5.0.0
+
 
 
 

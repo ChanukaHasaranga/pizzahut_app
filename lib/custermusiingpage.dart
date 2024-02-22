@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pizzahut_app/ExpandableContainer.dart';
+import 'package:pizzahut_app/cartmodel.dart';
 import 'package:pizzahut_app/extraitemexpanded.dart';
 import 'package:pizzahut_app/textfieldexpandable.dart';
+import 'package:provider/provider.dart';
 
 class customiseingpage extends StatefulWidget {
 String name;
@@ -23,10 +25,13 @@ class _customiseingpageState extends State<customiseingpage> {
   String key1="Select Crust * ";
   int totalExtraPrice=0;
   int newsizeprice=0;
-  int count=0;
+  int count=1;
   int totallprice=0;
   String additem="Add to CartRs.";
   List<String>extraitemsnew=[];
+  List<int>pricelistextra=[];
+  List<List<dynamic>>alltheitemcart=[];
+
   @override
   Widget build(BuildContext context) {
   double containerHeight = MediaQuery.of(context).size.height;
@@ -166,7 +171,15 @@ body: SafeArea(
           });
 
 
-         },)
+         }, pricelistextra: (pricelistedextra) { 
+
+setState(() {
+  
+pricelistextra=pricelistedextra;
+
+});
+
+          },)
                 ), 
                   Padding(
                     
@@ -190,10 +203,10 @@ body: SafeArea(
     heroTag: 'decrementButton', // Unique hero tag for the decrement button
     onPressed: () {
       setState(() {
-        if (count > 0) {
+        if (count > 1) {
           count--;
-        } else if (count == 0) {
-          count = 0;
+        } else if (count == 1) {
+          count = 1;
         }
       });
     },
@@ -227,7 +240,7 @@ Container(
     heroTag: 'incrementButton', // Unique hero tag for the increment button
     onPressed: () {
       setState(() {
-        if (count >= 0) {
+        if (count >= 1) {
           count++;
         }
       });
@@ -250,22 +263,28 @@ Container(
 
                Padding(
                   padding: EdgeInsets.all(containerHeight / 60),
-                 child: ElevatedButton(
-                  
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.black,
-                    shape: BeveledRectangleBorder()
-                  ),
-                  
-                  onPressed:() {
+                 child: Consumer<CartModel>(
+                   builder:(context, value, child) => 
+                    ElevatedButton(
+                    
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.black,
+                      shape: BeveledRectangleBorder()
+                    ),
+                    
+                    onPressed:() {
+                     
+                                   alltheitemcart.add([widget.name,totallprice,extraitemsnew,pricelistextra,count]);
+                                  Provider.of<CartModel>(context,listen: false).additemtocart(alltheitemcart);
+                                   print(alltheitemcart);
                    
-                 
-                 }, child: Center(
-                  child: Text(
-                    "$additem $totallprice",style: TextStyle(color: Colors.white,fontSize: fontSize/20,fontWeight: FontWeight.bold),
-                  ),
-                 )),
+                   }, child: Center(
+                    child: Text(
+                      "$additem ${totallprice * count}",style: TextStyle(color: Colors.white,fontSize: fontSize/20,fontWeight: FontWeight.bold),
+                    ),
+                   )),
+                 ),
                )
 
       ],
