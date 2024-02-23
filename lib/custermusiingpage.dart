@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pizzahut_app/ExpandableContainer.dart';
+import 'package:pizzahut_app/cart.dart';
 import 'package:pizzahut_app/cartmodel.dart';
 import 'package:pizzahut_app/extraitemexpanded.dart';
 import 'package:pizzahut_app/textfieldexpandable.dart';
@@ -277,6 +278,9 @@ Container(
                      
                                    alltheitemcart.add([widget.name,totallprice,extraitemsnew,pricelistextra,count]);
                                   Provider.of<CartModel>(context,listen: false).additemtocart(alltheitemcart);
+                                  Navigator.of(context).push(MaterialPageRoute(builder:(context) {
+                                    return cart();
+                                  },));
                                    print(alltheitemcart);
                    
                    }, child: Center(

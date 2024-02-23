@@ -18,7 +18,7 @@ class CartModel extends ChangeNotifier{
   void additemtocart(List newitem){
 items=newitem;
 csrtitems.add(items);
-print("lets see $csrtitems");
+print("lets see ${csrtitems[0][0][1]}");
 notifyListeners();
 
 
