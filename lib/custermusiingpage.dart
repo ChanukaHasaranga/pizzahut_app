@@ -279,7 +279,7 @@ Container(
                     
                     onPressed:() {
                      
-                                   alltheitemcart.add([widget.name,totallprice,extraitemsnew,pricelistextra,count]);
+                                   alltheitemcart.add([widget.name,totallprice.toString(),extraitemsnew,pricelistextra,count]);
                                   Provider.of<CartModel>(context,listen: false).additemtocart(alltheitemcart);
                                   Navigator.of(context).push(MaterialPageRoute(builder:(context) {
                                     return cart();

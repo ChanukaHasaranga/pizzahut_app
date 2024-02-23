@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pizzahut_app/buttonforcart.dart';
 import 'package:pizzahut_app/cartmodel.dart';
 import 'package:pizzahut_app/choosingpage.dart';
 import 'package:pizzahut_app/custermusiingpage.dart';
 import 'package:pizzahut_app/items.dart';
 import 'package:pizzahut_app/menu.dart';
+import 'package:pizzahut_app/textfield.dart';
 import 'package:provider/provider.dart';
 
 class cart extends StatefulWidget {
@@ -14,6 +16,7 @@ class cart extends StatefulWidget {
 }
 
 class _cartState extends State<cart> {
+  double servicechargenew=0;
   @override
   Widget build(BuildContext context) {
     double containerHeight = MediaQuery.of(context).size.height;
@@ -110,6 +113,8 @@ body: SafeArea(
                                      itemBuilder: (context, subIndex) {
                                       print("value${value.csrtitems}");
                                       print(index);
+                                      servicecharge(double.parse(value.calculation()));
+
 
                         return Container(
                               color: Colors.white,
@@ -196,7 +201,103 @@ body: SafeArea(
                     
                     ),
                   ),
+                   Padding(
+          padding:  EdgeInsets.only(left: containerHeight/200,right: containerHeight/200,top: containerHeight/120),
+                   child: ElevatedButton(onPressed:() {
+   
+                   }, child: Padding(
+          padding:  EdgeInsets.only(top: containerHeight/60,bottom: containerHeight/60),
+                     child: Center(child: Text("Enter your coupon code",style: TextStyle(color: Colors.white,fontSize: fontSize/22),)),
+                   ),
+                   style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 16, 87, 18),
+                        foregroundColor: Colors.black,
+                    shape: BeveledRectangleBorder(),
+                   
+                   ),
+                   
+                   ),
+                 ),
+     Padding(
+          padding:  EdgeInsets.only(left: containerHeight/200,right: containerHeight/200,top: containerHeight/120),
+                   child: ElevatedButton(onPressed:() {
+   
+                   }, child: Padding(
+          padding:  EdgeInsets.only(top: containerHeight/60,bottom: containerHeight/60),
+                     child: Center(child: Text("Redeem GES discount",style: TextStyle(color: Colors.white,fontSize: fontSize/22),)),
+                   ),
+                   style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 44, 44, 44),
+                        foregroundColor: Colors.black,
+                    shape: BeveledRectangleBorder(),
+                   
+                   ),
+                   
+                   ),
+                 ),
+                 pricegetting(txt: 'Sub total', value: value.calculation(),),
+                 pricegetting(txt: 'Discount amount', value: '.00',),
+                  pricegetting(txt: 'Discounted total', value: value.calculation(),),
+                  pricegetting(txt: "Service charge (7.50%)", value: servicechargenew.toStringAsFixed(2)),
+                  Padding(
+          padding:  EdgeInsets.only(top: containerHeight/60,bottom: containerHeight/60),
+                    child: Container(
+                      color: const Color.fromARGB(142, 255, 255, 255),
+                      width: double.infinity,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Net Total",style: TextStyle(color: Colors.black,fontSize: fontSize/20,fontWeight: FontWeight.bold),textAlign: TextAlign.right,),
+                                Text("Rs.${(double.parse(value.calculation())+servicechargenew).toString()}",style: TextStyle(color: Colors.black,fontSize: fontSize/13,fontWeight: FontWeight.bold),),
+                    
+                                ],
+                                
 
+                               )
+                        ],
+                      )
+                    ),
+                  ),
+                   Container(
+                    width: double.infinity,
+                    child: Divider(
+                      color: Color.fromARGB(66, 0, 0, 0),
+                    height: containerHeight/25,
+                     thickness: containerHeight/400,
+                     indent: 3,
+                     endIndent: 2,
+                    
+                    ),
+                  ),
+                   Padding(
+          padding:  EdgeInsets.only(left: containerHeight/200,right: containerHeight/200,top: containerHeight/120,bottom: containerHeight/40),
+                   child: ElevatedButton(onPressed:() {
+   
+                   }, child: Padding(
+          padding:  EdgeInsets.only(top: containerHeight/60,bottom: containerHeight/60),
+                     child: Center(child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         Text("Continue",style: TextStyle(color: Colors.white,fontSize: fontSize/22),),
+                         SizedBox(width: 10,),
+                        Icon(Icons.arrow_forward,color: Colors.white,size: fontSize/22,),
+
+                       ],
+                     )),
+                   ),
+                   style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 177, 11, 19),
+                        foregroundColor: Colors.black,
+                    shape: BeveledRectangleBorder(),
+                   
+                   ),
+                   
+                   ),
+                 ),
 
 
                 ]
@@ -209,5 +310,12 @@ body: SafeArea(
   )
 )
     );
+  }
+  void servicecharge(double servicecahrge){
+
+servicechargenew=servicecahrge*0.075;
+   
+
+
   }
 }
