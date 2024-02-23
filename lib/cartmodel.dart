@@ -42,7 +42,7 @@ double totalprice=0;
 
 for(int i=0;i<csrtitems.length;i++){
 
-totalprice+=double.parse(csrtitems[i][1]);
+totalprice+=double.parse(csrtitems[0][i][1]);
 
 print("totall price is $totalprice");
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pizzahut_app/cartmodel.dart';
 import 'package:pizzahut_app/menu.dart';
+import 'package:provider/provider.dart';
 
 class textfield1 extends StatefulWidget {
   String txt;

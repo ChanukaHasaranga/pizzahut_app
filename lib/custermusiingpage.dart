@@ -3,6 +3,7 @@ import 'package:pizzahut_app/ExpandableContainer.dart';
 import 'package:pizzahut_app/cart.dart';
 import 'package:pizzahut_app/cartmodel.dart';
 import 'package:pizzahut_app/extraitemexpanded.dart';
+import 'package:pizzahut_app/menu.dart';
 import 'package:pizzahut_app/textfieldexpandable.dart';
 import 'package:provider/provider.dart';
 
@@ -57,6 +58,8 @@ actions:<Widget>
     
   }, icon:Icon(Icons.shopping_cart_outlined,color: Colors.black,size: fontSize/21,)),
   IconButton(onPressed:() {
+
+    Navigator.of(context).push(MaterialPageRoute(builder:(context) => cart(),));
     
   }, icon:Icon(Icons.person_outline,color: const Color.fromARGB(255, 134, 25, 17),size: fontSize/21,),),
   IconButton(onPressed:() {
@@ -281,7 +284,7 @@ Container(
                                   Navigator.of(context).push(MaterialPageRoute(builder:(context) {
                                     return cart();
                                   },));
-                                   print(alltheitemcart);
+                                   print(value.csrtitems);
                    
                    }, child: Center(
                     child: Text(

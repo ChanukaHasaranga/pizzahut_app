@@ -12,13 +12,19 @@ void main() async{
 
 runApp(
   
-  ChangeNotifierProvider(
-  create: (context) =>CartModel(),
-   child:DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => 
- Myapp(),
-   ))
+  MultiProvider(
+    
+    providers: [
+     ChangeNotifierProvider(
+    create: (context) =>CartModel(),)
+    ],
+     child:DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => 
+     Myapp(),
+     ),
+    
+  )
 
 );
 
