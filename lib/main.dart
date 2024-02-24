@@ -18,11 +18,7 @@ runApp(
      ChangeNotifierProvider(
     create: (context) =>CartModel(),)
     ],
-     child:DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => 
-     Myapp(),
-     ),
+     child:Myapp(),
     
   )
 
@@ -38,9 +34,7 @@ class Myapp extends StatelessWidget {
     return MaterialApp(
 
        //device preview ekata dmma code
-    useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
+
       
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.light),
