@@ -12,6 +12,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class textfield1 extends StatefulWidget {
   String txt;
+  Function(String) Address;
+
 
    textfield1(
 
@@ -19,6 +21,7 @@ class textfield1 extends StatefulWidget {
     
     {
      required this.txt, 
+     required this.Address,
       
       super.key});
 
@@ -43,7 +46,7 @@ class _textfield1State extends State<textfield1> {
       onTap: () {
         setState(() {
           if (widget.txt=="Enter your delivery Location") {
-
+    
           showDialog(
             
             context: context,
@@ -51,10 +54,10 @@ class _textfield1State extends State<textfield1> {
            builder:(context) {
              
                    return AlertDialog(
-  backgroundColor: Color.fromARGB(255, 255, 255, 255),
-  content: Container(
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      content: Container(
     width: double.infinity,
-    height: containerHeight/2,
+    height: containerHeight/1.2,
     child: Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +75,7 @@ class _textfield1State extends State<textfield1> {
           ),
         ),
                 SizedBox(height: 10), // Add some spacing if needed
-
+    
         Center(
           child: Text(
             
@@ -81,7 +84,7 @@ class _textfield1State extends State<textfield1> {
           ),
         ),
                 SizedBox(height: containerHeight/40,),
-
+    
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -118,8 +121,8 @@ class _textfield1State extends State<textfield1> {
               width: fontSize/20,
             ),
             
-Column(
-  mainAxisAlignment: MainAxisAlignment.start,
+    Column(
+      mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text("Street",style: TextStyle(color: Colors.black,fontSize: fontSize/30),),
                 Container(
@@ -149,32 +152,35 @@ Column(
               ],
             )
               
-
-
-
-
+    
+    
+    
+    
             
-
+    
           ],
         ),
         SizedBox(height: containerHeight/20,),
         Center(
           child: ElevatedButton(onPressed:() {
-_getcurentlocation().then((value) {
-  lat="${value.latitude}";
-  long="${value.longitude}";
-  setState(() {
+            setState(() {
+              
+          
+    _getcurentlocation().then((value) {
+      lat="${value.latitude}";
+      long="${value.longitude}";
     print("Latitude: $lat,   Longtude: $long");
-
-
     
-  });
+    
+    
+      
     _livelocation();
-
-
-
-});
-
+    
+    
+    
+    });
+      });
+    
           },
           style: ElevatedButton.styleFrom(
             backgroundColor:Colors.white,
@@ -201,9 +207,9 @@ _getcurentlocation().then((value) {
           child: ElevatedButton(onPressed:() {
             setState(() {
               _openmap(lat,long);
-
+    
             });
-
+    
           },
           style: ElevatedButton.styleFrom(
             backgroundColor:Colors.white,
@@ -224,16 +230,105 @@ _getcurentlocation().then((value) {
            )
            
            ),
+        ),
+        SizedBox(height: containerHeight/30,),
+        Center(
+          child: ElevatedButton(onPressed:() {
+            setState(() {
+    if (houceno.text.isNotEmpty && street.text.isNotEmpty) {
+    
+    address="${houceno.text},${street.text}";
+    widget.Address(address);
+    showDialog(
+      context:context, 
+    
+    builder:(context) {
+    return AlertDialog(
+    backgroundColor: Color.fromARGB(0, 255, 255, 255),
+    content: Container(
+      width: double.infinity,
+    color: Colors.white,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+          Text("${address}",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize:16),),
+                    Center(child: Text("Is the Address Correct ?",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize:20),)),
+    
+    
+    
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+              shape: BeveledRectangleBorder()
+            ),
+            
+            onPressed:() {
+            Navigator.of(context).push(MaterialPageRoute(builder:(context) {
+              return menu();
+            },));
+            
+          }, child: Center(child: Text("Yes",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 18),),)),
+    
+    
+            ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+              shape: BeveledRectangleBorder()
+            ),
+            
+            onPressed:() {
+    Navigator.of(context).pop();          
+          }, child: Center(child: Text("No",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 18),),))
+    
+    
+    
+      ],
+    ),
+    ),
+    
+    ) ; 
+    
+    },);
+      
+    
+      
+    } else {
+      
+    }
+            });
+    
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor:Colors.white,
+                 side: BorderSide(color: Colors.black,width:0.3),
+                 shape: BeveledRectangleBorder(),
+            fixedSize: Size(fontSize, containerHeight/30)
+            
+          ),
+          
+          
+          
+           child:Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+             children: [
+              Icon(Icons.location_searching,color: Colors.black,size: fontSize/30,),
+               Text("Select location manualy",style: TextStyle(color: Colors.black,fontSize: fontSize/30),),
+             ],
+           )
+           
+           ),
         )
-
-
+    
+    
+    
        
       ],
     ),
-  ),
-);
-
-
+      ),
+    );
+    
+    
            },
            
            
@@ -300,12 +395,13 @@ try {
 
       if (placemarks.isNotEmpty) {
         Placemark placemark = placemarks[0];
-         address =
+      address =
             "${placemark.subThoroughfare} ${placemark.thoroughfare}, ${placemark.locality}, ${placemark.administrativeArea}, ${placemark.country}".toString();
 
         setState(() {
           print("Latitude: $lat, Longtide: $long, Location: $address");
           print(address);
+          widget.Address(address);
 
 showDialog(
   context:context, 
@@ -320,7 +416,7 @@ content: Container(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-          Text(address,style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize:16),),
+          Text("${address}",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize:16),),
                     Center(child: Text("Is the Address Correct ?",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize:20),)),
 
 
@@ -346,7 +442,24 @@ content: Container(
             ),
             
             onPressed:() {
-Navigator.of(context).pop();          
+setState(() {
+              
+          
+    _getcurentlocation().then((value) {
+      lat="${value.latitude}";
+      long="${value.longitude}";
+    print("Latitude: $lat,   Longtude: $long");
+    
+    
+    
+      
+    _livelocation();
+    
+    
+    
+    });
+      }); 
+      
           }, child: Center(child: Text("No",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 18),),))
 
 
@@ -377,10 +490,13 @@ Future<void> _openmap(String lat, String long) async {
     if (!mapResult) {
       throw 'Could not launch maps';
     }
+
+    print(mapResult);
   } catch (e) {
     print("Error launching maps: $e");
   }
 }
+
 
 
 
