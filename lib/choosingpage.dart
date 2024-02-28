@@ -84,13 +84,8 @@ class _choosingpageState extends State<choosingpage> {
                                 child: Center(
                                   child: TabBarView(
                                     children: [
-                                     textfield1(txt: 'Enter your delivery Location', Address: (adress ) { 
-                                      setState(() {
-                                        
-                                      });
-                                        
-                                      },),
-                                     textfield1(txt: 'Enter your takeaway location', Address: (adress ) {  },)
+                                     textfield1(txt: 'Enter your delivery Location', ),
+                                     textfield1(txt: 'Enter your takeaway location',  )
                                     ]
                                     
                                     ),

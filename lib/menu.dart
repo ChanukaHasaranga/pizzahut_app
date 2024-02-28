@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pizzahut_app/cartmodel.dart';
+import 'package:pizzahut_app/choosingpage.dart';
 import 'package:pizzahut_app/dividertext.dart';
 import 'package:pizzahut_app/items.dart';
 import 'package:pizzahut_app/list.dart';
+import 'package:pizzahut_app/textfield.dart';
 import 'package:provider/provider.dart';
 
 class menu extends StatefulWidget {
@@ -14,6 +16,7 @@ class menu extends StatefulWidget {
 }
 
 class _menuState extends State<menu> {
+  String addrress='';
   @override
   Widget build(BuildContext context) {
   double containerHeight = MediaQuery.of(context).size.height;
@@ -97,7 +100,13 @@ body: SafeArea(
               Padding(
                 padding:  EdgeInsets.only(right: fontSize/6,left: fontSize/6,top: containerHeight/60,bottom: containerHeight/60),
                 child: ElevatedButton(onPressed:() {
+                  
+                  textfield1(txt: "Delivery", );
                   print(value.csrtitems);
+                  Navigator.of(context).push(MaterialPageRoute(builder:(context) {
+                    return choosingpage();
+                  },));
+                  print(addrress);
                 },
                 
                 style: ElevatedButton.styleFrom(

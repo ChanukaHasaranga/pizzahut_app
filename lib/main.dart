@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pizzahut_app/cartmodel.dart';
 import 'package:pizzahut_app/loadingpage.dart';
+import 'package:pizzahut_app/location.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,7 +17,9 @@ runApp(
     
     providers: [
      ChangeNotifierProvider(
-    create: (context) =>CartModel(),)
+    create: (context) =>CartModel(),),
+
+    ChangeNotifierProvider(create:(context) => LocationProvider(),)
     ],
      child:Myapp(),
     
