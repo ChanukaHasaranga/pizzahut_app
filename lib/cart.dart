@@ -8,6 +8,7 @@ import 'package:pizzahut_app/custermusiingpage.dart';
 import 'package:pizzahut_app/items.dart';
 import 'package:pizzahut_app/location.dart';
 import 'package:pizzahut_app/menu.dart';
+import 'package:pizzahut_app/recieptdetailspage.dart';
 import 'package:pizzahut_app/textfield.dart';
 import 'package:provider/provider.dart';
 
@@ -297,7 +298,9 @@ body: SafeArea(
             padding:  EdgeInsets.only(left: containerHeight/200,right: containerHeight/200,top: containerHeight/120,bottom: containerHeight/40),
                      child: ElevatedButton(onPressed:() {
     
-    
+                               Navigator.of(context).push(MaterialPageRoute(builder:(context) {
+                                 return recipient();
+                               },));
     
     
     
