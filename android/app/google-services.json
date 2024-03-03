@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "615626382034",
+    "project_id": "pizzahut-ca82a",
+    "storage_bucket": "pizzahut-ca82a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615626382034:android:51a0dde984c3b541c82b0b",
+        "android_client_info": {
+          "package_name": "com.example.pizzahut_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCShLyLRifd3gpV8DOrTQMRPtfCsIoWmv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

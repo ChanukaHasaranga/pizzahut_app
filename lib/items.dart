@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:pizzahut_app/custermusiingpage.dart';
 
 class items extends StatelessWidget {
-  const items({super.key});
+int pricebig;
+String name;
+String imagepath;
+
+
+   items({
+    required this.pricebig,
+    required this.name,
+    required this.imagepath,
+    
+    super.key});
 
   @override
   Widget build(BuildContext context) {
   double containerHeight = MediaQuery.of(context).size.height;
   double fontSize = MediaQuery.of(context).size.width;
-  int pricebig=840;
-  String name='Chilli Chicken Pizza';
     return SafeArea(child: Padding(
       padding:  EdgeInsets.only(top: containerHeight/40,left: fontSize/30,right: fontSize/30),
       child: GestureDetector(
@@ -38,7 +46,7 @@ class items extends StatelessWidget {
           width: fontSize/3,
           decoration: BoxDecoration(
         color: Colors.grey,
-        image: DecorationImage(image: AssetImage("assets/pizza.png"),fit: BoxFit.contain,alignment: Alignment.bottomLeft)
+        image: DecorationImage(image: NetworkImage(imagepath),fit: BoxFit.contain,alignment: Alignment.bottomLeft)
           ),
          ),
          SizedBox(width: fontSize/14,),

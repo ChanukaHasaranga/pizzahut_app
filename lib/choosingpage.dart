@@ -135,13 +135,28 @@ class _choosingpageState extends State<choosingpage> {
                         )
                         
                         
-                        )
+                        ),
+                          Positioned(
+                    top: 10,
+                    right: 5,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        shape: BeveledRectangleBorder()
+                      ),
+                      
+                      onPressed:() {
+                      
+                    }, child:Text("Sign in/ Register",style: TextStyle(color: Colors.white,fontSize: fontSize/40))),
+                  )
+                 
                  
                     ]
                  
                   ),
-                  dividertext(txt: 'Our Most Popular Deals',)
-                 
+                  dividertext(txt: 'Our Most Popular Deals',),
+                  
+                
                   ],
                  
                  
